@@ -1,32 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 
 <head>
-    <html lang="pt-br">
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Verificador de números arredondados</title> <!-- Título da página -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Verificador de números arredondados</title>
 </head>
 
 <body>
-    <h1>VERIFICADOR DE NÚMEROS ARREDONDADOS</h1> <!-- Título principal da página -->
-    <form action="" method="post"> <!-- Início do formulário -->
-        <label for="numero">Digite um número:</label> <!-- Rótulo do campo de entrada de número -->
-        <input type="number" name="numero" id="numero"> <!-- Campo de entrada de número -->
-        <input type="submit" name="enviar" value="Enviar"> <!-- Botão de envio do formulário -->
-    </form> <!-- Fim do formulário -->
-    <?php 
+    <h1>VERIFICADOR DE NÚMEROS ARREDONDADOS</h1>
+    <form action="" method="post">
+        <label for="numero">Digite um número:</label>
+        <input type="number" name="numero" id="numero">
+        <input type="submit" name="enviar" value="Enviar">
+    </form>
+    <?php
     $numero = null; // Inicializa a variável $numero como nula
-    if(isset($_POST['enviar'])){ // Verifica se o formulário foi enviado
+    
+    // Verifica se o formulário foi enviado
+    if (isset($_POST['enviar'])) {
         $numero = $_POST['numero']; // Atribui o valor do campo de entrada à variável $numero
-        if(ctype_digit($numero)){ // Verifica se o valor de $numero é um número inteiro
-            echo "<p>Esse número aki $numero que vc colocou é arredondado.</p>"; // Exibe a mensagem "O número X é arredondado."
+    
+        // Verifica se o número é um inteiro e se termina em 0
+        if (is_numeric($numero) && $numero % 10 == 0) {
+            $arredondado = true; // Define a variável $arredondado como verdadeira se o número for arredondado
         } else {
-            echo "<p>Esse número aki $numero que vc colocou não é arredondado.</p>"; // Exibe a mensagem "O número X não é arredondado."
+            $arredondado = false; // Define a variável $arredondado como falsa se o número não for arredondado
+        }
+
+        // Exibe uma mensagem com base no resultado da verificação de arredondamento
+        if ($arredondado) { // Se o número for arredondado, exibe uma mensagem indicando isso
+            echo "Esse número aki <strong>$numero</strong> que vc colocou é arredondado.</p>";
+        } else { // Se o número não for arredondado, exibe uma mensagem indicando isso
+            echo "Esse número aki <strong>$numero</strong> que vc colocou não é arredondado.</p>";
         }
     }
     ?>
-
 </body>
 
 </html>
