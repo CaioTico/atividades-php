@@ -16,7 +16,7 @@
             <label for='product_name'>Nome do Produto:</label>
             <input type='text' name='product_name' id='product_name' required>
             <label for='product_value'>Valor do Produto:</label>
-            <input type='text' name='product_value' id='product_value' required>
+            <input type='number' name='product_value' id='product_value' required>
             <button type='submit'>Calcular</button>
         </form>
     </div>
